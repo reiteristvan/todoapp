@@ -3,7 +3,9 @@ import { databaseConnectionString } from '../configuration'
 import { User, Collection, Task } from './domainModel';
 import {userSchema, collectionSchema, taskSchema  } from './schemas';
 
-connect(databaseConnectionString);
+connect(databaseConnectionString, {
+    dbName: 'todoapp'
+});
 
 connection.on('error', () => {
     console.error('Database connection error');
