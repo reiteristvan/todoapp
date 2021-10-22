@@ -1,4 +1,5 @@
 
 database = db.getSiblingDB('todoapp');
 
-database.createCollection('testCollection');
+database.createCollection('taskCollections');
+database.createCollection('tasks')
