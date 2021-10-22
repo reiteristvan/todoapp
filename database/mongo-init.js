@@ -5,10 +5,10 @@ db.auth('root', '12Budapest99');
 database = db.getSiblingDB('todoapp');
 
 db.createUser({
-    'user': "root",
+    'user': "todoappuser",
     'pwd': "12Budapest99",
     'roles': [{
-        'role': 'dbOwner',
+        'role': 'readWrite',
         'db': 'todoapp'
     }]    
 });
