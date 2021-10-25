@@ -6,7 +6,8 @@
   "scripts": {
     "start-dev": "nodemon ./src/app.ts",
     "start-prod": "node ./dist/app.js",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "generate-types": "graphql-codegen --config codegen.yml"
   },
   "author": "Istvan Reiter",
   "license": "ISC",

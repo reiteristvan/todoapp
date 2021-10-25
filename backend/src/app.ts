@@ -1,12 +1,24 @@
-import { rejects } from 'assert';
+
 import express, { Request, Response } from 'express'
-import { resolve } from 'path/posix';
+import { ApolloServer } from 'apollo-server-express'
+
 import { UserModel, CollectionModel, TaskModel } from './data/database'
+import { typeDefinitions } from './graphql/schema';
 
 const app = express();
 const port = 8888;
 
 app.use(express.json());
+
+async function startApolloServer(){
+    const apolloServer = new ApolloServer({
+        typeDefs: typeDefinitions
+    });
+    await apolloServer.start();
+    apolloServer.applyMiddleware({ app });
+}
+
+startApolloServer();
 
 app.listen(port, () => {
     console.log('Server started');
@@ -22,10 +34,10 @@ app.get('/', (request:Request, response:Response) => {
 });
 
 app.post('/collection', (request:Request, response:Response) => {
-    let newUser = new UserModel(request.body);
-    newUser.save((error, document) => {
+    let newCollection = new CollectionModel(request.body);
+    newCollection.save((error, document) => {
         if(error) { return console.error(error); }
-        console.log('document insterted')
+        console.log('document insterted', document.title);
     });
 
     response.status(200).json("");
