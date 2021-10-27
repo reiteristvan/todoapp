@@ -15,9 +15,9 @@ export const typeDefinitions = gql`
     }
 
     type Query {
-        collections: [Collection]!
-        collection(id:ID!): Collection
-        tasks(collectionId:ID!): [Task]!
+        getCollections(userId:ID): [Collection]!
+        getCollection(collectionId:ID!): Collection
+        getTasksOfCollection(collectionId:ID!): [Task]!
     }
 
     type Mutation {

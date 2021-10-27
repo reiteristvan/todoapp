@@ -4,6 +4,7 @@ import { ApolloServer } from 'apollo-server-express'
 
 import { UserModel, CollectionModel, TaskModel } from './data/database'
 import { typeDefinitions } from './graphql/schema';
+import { resolvers } from './graphql/resolvers';
 
 const app = express();
 const port = 8888;
@@ -12,7 +13,8 @@ app.use(express.json());
 
 async function startApolloServer(){
     const apolloServer = new ApolloServer({
-        typeDefs: typeDefinitions
+        typeDefs: typeDefinitions,
+        resolvers: resolvers
     });
     await apolloServer.start();
     apolloServer.applyMiddleware({ app });
@@ -24,7 +26,6 @@ app.listen(port, () => {
     console.log('Server started');
 });
 
-// List all collection in database
 app.get('/', (request:Request, response:Response) => {
     const result = {
         title: 'todo'
