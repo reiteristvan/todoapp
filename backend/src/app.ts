@@ -27,21 +27,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (request:Request, response:Response) => {
-    const result = {
-        title: 'todo'
-    };
-    
-    response.status(200).json(result)
-});
-
-app.post('/collection', (request:Request, response:Response) => {
-    let newCollection = new CollectionModel(request.body);
-    newCollection.save((error, document) => {
-        if(error) { return console.error(error); }
-        console.log('document insterted', document.title);
-    });
-
-    response.status(200).json("");
+    response.status(200).json({ title: "Hello" });
 });
 
 app.get('/ping', (request:Request, response:Response) => {
