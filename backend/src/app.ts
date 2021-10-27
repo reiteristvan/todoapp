@@ -2,7 +2,6 @@
 import express, { Request, Response } from 'express'
 import { ApolloServer } from 'apollo-server-express'
 
-import { UserModel, CollectionModel, TaskModel } from './data/database'
 import { typeDefinitions } from './graphql/schema';
 import { resolvers } from './graphql/resolvers';
 
