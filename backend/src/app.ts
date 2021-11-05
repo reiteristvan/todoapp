@@ -6,7 +6,7 @@ import { typeDefinitions } from './graphql/schema';
 import { resolvers } from './graphql/resolvers';
 
 const app = express();
-const port = 8888;
+const port = 8080;
 
 app.use(express.json());
 
