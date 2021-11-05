@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { CollectionList } from './components/collectionList';
+import { fetchCollectionsThunk, selectAllCollections } from './slices/collectionSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const collections = useSelector(selectAllCollections);
+
+  useEffect(() => {
+    dispatch(fetchCollectionsThunk());
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CollectionList collections={collections} />
     </div>
   );
 }
 
 export default App;
+
+// https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
